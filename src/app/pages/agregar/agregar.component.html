@@ -1,0 +1,17 @@
+<form action="" [formGroup]="Formulario">
+<div class="mb-3" style="padding-left: 100px; padding-top: 100px;">
+  <label for="exampleFormControlInput1" class="form-label">Titulo de la tarea</label>
+  <input style="width: 500px;" type="email" class="form-control" formControlName="titulo">
+</div>
+<div class="mb-3" style="padding-left: 100px;">
+  <label for="exampleFormControlInput1" class="form-label">Descripcion</label>
+  <input style="width: 500px;" type="email" class="form-control" formControlName="descripcion">
+</div>
+<div class="mb-3" style="padding-left: 100px;">
+  <label for="exampleFormControlInput1" class="form-label">Vencimiento</label>
+  <input style="width: 500px;" type="date" class="form-control" formControlName="vencimiento">
+<div style="padding-left: 420px; padding-top: 40px;">
+  <button  type="button" class="btn btn-primary"(click)="agregar()"  [disabled]="!Formulario.valid">Agregar</button>
+</div>
+</div>
+</form>
