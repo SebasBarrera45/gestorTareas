@@ -1,0 +1,36 @@
+<section class="m-3">
+  <!-- Filtrado -->
+  <article>
+    <label for="filtro" class="m-1">Filtrar</label>
+    <select (change)="filtrar()" name="filtro" id="filtro" [(ngModel)]="filtrado">
+      <option [value]="null"></option>
+      <option [value]="true">Completadas</option>
+      <option [value]="false">Pendientes</option>
+    </select>
+  </article>
+  <!-- Tareas -->
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Vencimiento</th>
+          <th scope="col">Completada</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tarea of tareas; let i = index;">
+          <th scope="row">{{i}}</th>
+          <td>{{tarea.titulo}}</td>
+          <td>{{tarea.descripcion}}</td>
+          <td>{{tarea.vencimiento | date}}</td>
+          <td><input class="form-check-input" type="checkbox" (change)="cambiarEstatus(i)" [checked]="tarea.completada"></td>
+          <td (click)="go2Editar(tarea)" style="cursor:pointer">Editar</td>
+          <td (click)="eliminar(i)" style="cursor:pointer">X</td>
+        </tr>
+      </tbody>
+    </table>
+</section>
