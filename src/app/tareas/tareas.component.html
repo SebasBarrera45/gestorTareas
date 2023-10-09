@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+
 <section class="m-3">
   <!-- Filtrado -->
   <article>
@@ -28,7 +30,7 @@
           <td>{{tarea.descripcion}}</td>
           <td>{{tarea.vencimiento | date}}</td>
           <td><input class="form-check-input" type="checkbox" (change)="cambiarEstatus(i)" [checked]="tarea.completada"></td>
-          <td (click)="go2Editar(tarea)" style="cursor:pointer">Editar</td>
+          <td (click)="go2Editar(i)" style="cursor:pointer">Editar</td>
           <td (click)="eliminar(i)" style="cursor:pointer">X</td>
         </tr>
       </tbody>

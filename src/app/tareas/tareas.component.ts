@@ -27,9 +27,8 @@ export class TareasComponent implements OnInit {
     localStorage.setItem('tareas', JSON.stringify(this.tareas));
   }
 
-  go2Editar(tarea: Tarea) {
-    let tareaString: string = JSON.stringify(tarea);
-    this.router.navigateByUrl('editar/' + tareaString);
+  go2Editar(index: number) {
+    this.router.navigateByUrl('editar/' + index);
   }
 
   cambiarEstatus(index: number) {

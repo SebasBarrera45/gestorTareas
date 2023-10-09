@@ -7,6 +7,7 @@ import { TareasComponent } from './tareas/tareas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgregarComponent } from './pages/agregar/agregar.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
+import { EditarComponent } from './pages/editar/editar.component';
 
 
 @NgModule({
@@ -14,12 +15,14 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
     AppComponent,
     NavbarComponent,
     AgregarComponent,
-    TareasComponent
+    TareasComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
