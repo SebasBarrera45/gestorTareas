@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Tarea } from 'src/app/interfaces/tarea';
 
 @Component({
@@ -18,7 +19,7 @@ export class AgregarComponent implements OnInit {
     completada: [false],
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +32,7 @@ export class AgregarComponent implements OnInit {
     localStorage.clear();
     localStorage.setItem('tareas', JSON.stringify(this.tareas));
     this.Formulario.reset();
+    this.router.navigate(['tareas']);
   }
 }
 

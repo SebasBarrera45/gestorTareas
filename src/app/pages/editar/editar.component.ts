@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Tarea } from 'src/app/interfaces/tarea';
 
 @Component({
@@ -19,7 +19,7 @@ export class EditarComponent implements OnInit {
     completada: [false],
   });
 
-  constructor(private ar: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private ar: ActivatedRoute, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.index = this.ar.snapshot.params['index'];
@@ -35,6 +35,7 @@ export class EditarComponent implements OnInit {
     localStorage.clear();
     localStorage.setItem('tareas', JSON.stringify(this.tareas));
     this.Formulario.reset();
+    this.router.navigate(['tareas']);
   }
 
 }

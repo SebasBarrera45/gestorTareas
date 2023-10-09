@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
 })
 export class TareasComponent implements OnInit {
 
-  public tareas: Tarea[] = [
-    { titulo: "Baila", descripcion: "La huaracha", vencimiento: new Date("10/10/2023"), completada: true }
-  ];
+  public tareas: Tarea[] = [];
   public filtrado = null;
 
   constructor(private router: Router) { }
@@ -36,7 +34,6 @@ export class TareasComponent implements OnInit {
     localStorage.clear();
     localStorage.setItem('tareas', JSON.stringify(this.tareas));
   }
-
 
   filtrar() {
     if (localStorage.getItem('tareas') != null)

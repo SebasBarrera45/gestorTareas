@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let tarea of tareas; let i = index;">
-          <th scope="row">{{i}}</th>
+          <th scope="row">{{i+1}}</th>
           <td>{{tarea.titulo}}</td>
           <td>{{tarea.descripcion}}</td>
           <td>{{tarea.vencimiento | date}}</td>
