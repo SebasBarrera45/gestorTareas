@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Tarea } from '../interfaces/tarea';
+import { Tarea } from '../../interfaces/tarea';
 import { Router } from '@angular/router';
+import { CRUDService } from 'src/app/services/crud.service';
 
 @Component({
   selector: 'app-tareas',
@@ -12,17 +13,15 @@ export class TareasComponent implements OnInit {
   public tareas: Tarea[] = [];
   public filtrado = null;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private crud: CRUDService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('tareas') != null)
-      this.tareas = JSON.parse(localStorage.getItem('tareas')!);
+    this.tareas = this.crud.obtenerDatos();
   }
 
   eliminar(index: number) {
-    this.tareas.splice(index, 1);
-    localStorage.clear();
-    localStorage.setItem('tareas', JSON.stringify(this.tareas));
+    this.crud.eliminarDato(index);
+
   }
 
   go2Editar(index: number) {
@@ -40,15 +39,13 @@ export class TareasComponent implements OnInit {
       this.tareas = JSON.parse(localStorage.getItem('tareas')!);
     if (this.filtrado != 'null') {
       if (this.filtrado == 'true')
-      this.tareas = this.tareas.filter((tarea) => {
-        return tarea.completada == true;
-      })
+        this.tareas = this.tareas.filter((tarea) => {
+          return tarea.completada == true;
+        })
       if (this.filtrado == 'false')
-      this.tareas = this.tareas.filter((tarea) => {
-        return tarea.completada == false;
-      })
+        this.tareas = this.tareas.filter((tarea) => {
+          return tarea.completada == false;
+        })
     }
-
   }
-
 }

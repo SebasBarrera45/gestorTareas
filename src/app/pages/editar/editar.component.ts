@@ -1,3 +1,4 @@
+import { CRUDService } from './../../services/crud.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,23 +20,16 @@ export class EditarComponent implements OnInit {
     completada: [false],
   });
 
-  constructor(private ar: ActivatedRoute, private fb: FormBuilder, private router: Router) { }
+  constructor(private ar: ActivatedRoute, private fb: FormBuilder, private router: Router, private crud: CRUDService) { }
 
   ngOnInit(): void {
     this.index = this.ar.snapshot.params['index'];
-    if (localStorage.getItem('tareas') != null) {
-      this.tareas = JSON.parse(localStorage.getItem('tareas')!);
-      this.Formulario.patchValue(this.tareas[this.index]);
+    this.Formulario.patchValue(this.crud.obtenerDatos()[this.index]);
     }
-  }
+
 
   editar() {
-    this.tareas.splice(this.index, 1);
-    this.tareas.push(this.Formulario.value);
-    localStorage.clear();
-    localStorage.setItem('tareas', JSON.stringify(this.tareas));
-    this.Formulario.reset();
+    this.crud.actualizarDato(this.Formulario.value, this.index);
     this.router.navigate(['tareas']);
   }
-
 }
